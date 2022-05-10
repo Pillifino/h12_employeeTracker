@@ -1,7 +1,8 @@
-DROP DATABASE IF EXISTS registrar_db;
-CREATE DATABASE registrar_db;
+DROP DATABASE IF EXISTS company_db;
+CREATE DATABASE company_db;
 
-USE movies_db;
+-- Mini Project Examples
+USE company_db;
 
 CREATE TABLE movies (
   id INT AUTO_INCREMENT NOT NULL,
@@ -18,4 +19,18 @@ CREATE TABLE reviews (
   FOREIGN KEY (movie_id)
   REFERENCES movies(id)
   ON DELETE SET NULL
+);
+
+-- HW 12 Tables
+
+CREATE Table departments (
+
+);
+
+CREATE Table roles (
+
+);
+
+CREATE Table employees (
+
 );
