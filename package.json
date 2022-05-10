@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Pillifino/h12_employeeTracker#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "mysql2": "^2.3.3"
   }
 }
