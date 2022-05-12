@@ -1,36 +1,48 @@
 DROP DATABASE IF EXISTS company_db;
 CREATE DATABASE company_db;
 
--- Mini Project Examples
 USE company_db;
 
-CREATE TABLE movies (
-  id INT AUTO_INCREMENT NOT NULL,
-  PRIMARY KEY,
-  movie_name
-  VARCHAR(100) NOT NULL
+-- Attempt at hooking up the tables with primary and foreign keys
+CREATE TABLE departments(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  department_name VARCHAR(100) NOT NULL
 );
 
-CREATE TABLE reviews (
-  id INT AUTO_INCREMENT NOT NULL,
-  course_title VARCHAR(30) NOT NULL,
-  moviw_id INT,
-  review text(100) NOT NULL,
-  FOREIGN KEY (movie_id)
-  REFERENCES movies(id)
+
+CREATE TABLE roles(
+  id INT AUTO_INCREMENT NOT NULL
+  PRIMARY KEY,
+  role_id INT,
+  role_description TEXT NOT NULL,
+  FOREIGN KEY (role_id) 
+  REFERENCES departments(id)
   ON DELETE SET NULL
 );
 
--- HW 12 Tables
-
-CREATE Table departments (
-
+CREATE TABLE employees(
+  id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  employee_id INT,
+  first_name VARCHAR(100) NOT NULL,
+  last_name VARCHAR(100) NOT NULL,
+  FOREIGN KEY (employee_id)
+  REFERENCES departments(id)
+  ON DELETE SET NULL
 );
 
-CREATE Table roles (
+-- working tables
+-- CREATE TABLE departments (
+--   id INT,
+--   department_name VARCHAR(100)
+-- );
 
-);
+-- CREATE TABLE roles (
+--   id INT,
+--   role_name VARCHAR(100)
+-- );
 
-CREATE Table employees (
+-- CREATE TABLE employees (
+--   id INT,
+--   first_name VARCHAR(100)
+-- );
 
-);
