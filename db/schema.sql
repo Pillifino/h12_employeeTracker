@@ -13,20 +13,20 @@ CREATE TABLE departments(
 CREATE TABLE roles(
   id INT AUTO_INCREMENT NOT NULL
   PRIMARY KEY,
-  role_id INT,
-  role_description TEXT NOT NULL,
+  department_id INT,
+  title VARCHAR(100),
   salary VARCHAR(100) NOT NULL,
-  FOREIGN KEY (role_id) 
+  FOREIGN KEY (department_id) 
   REFERENCES departments(id)
   ON DELETE SET NULL
 );
 
 CREATE TABLE employees(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-  employee_id INT,
+  manager_id INT,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
-  FOREIGN KEY (employee_id)
+  FOREIGN KEY (manager_id)
   REFERENCES departments(id)
   ON DELETE SET NULL
 );
