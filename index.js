@@ -1,15 +1,9 @@
 // const employee = require("./lib/employee");
-const express = require('express');
 const inquirer = require("inquirer");
 // get the client
 const mysql = require('mysql2');
 
-const PORT = process.env.PORT || 3001;
-const app = express();
 
-// Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
 
 // Connect to database
 const db = mysql.createConnection(
@@ -26,7 +20,6 @@ const db = mysql.createConnection(
   
   
 function startTracker() {
-    console.log("init")
     inquirer.prompt([
         {
             type: "list",
@@ -40,7 +33,6 @@ function startTracker() {
         }
     ])
     .then((answers) => {
-        console.log("answers",answers)
       if  (answers.actions == "View All Employees") {
           viewEmployees(); // Views All Employees (Use MySQL 2 to grab table data of joined tables)
       }
@@ -64,7 +56,6 @@ function startTracker() {
       }
     })
     .catch((error) => {
-        console.log("error",error)
       if (error.isTtyError) {
         // Prompt couldn't be rendered in the current environment
       } else {
@@ -211,30 +202,23 @@ function addDepartments() {
 startTracker();
 
 // db.queries for the database tables
-function viewDepartments(){
+function viewDepartments() {
     db.query('SELECT * FROM departments', function (err, results) {
         console.log(results);
+        startTracker();
       });
 }
 
 function viewRoles(){
     db.query('SELECT * FROM roles', function (err, results) {
         console.log(results);
+        startTracker();
       });
 }
 
 function viewEmployees() {
 db.query('SELECT * FROM employees', function (err, results) {
     console.log(results);
+    startTracker();
   });
 }
-
-// Default response for any other request (Not Found)
-app.use((req, res) => {
-    res.status(404).end();
-  });
-
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-  });
-  
