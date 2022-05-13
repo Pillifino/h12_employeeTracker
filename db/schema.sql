@@ -23,10 +23,11 @@ CREATE TABLE roles(
 
 CREATE TABLE employees(
   id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+  role_id INT,
   manager_id INT,
   first_name VARCHAR(100) NOT NULL,
   last_name VARCHAR(100) NOT NULL,
-  FOREIGN KEY (manager_id)
-  REFERENCES departments(id)
+  FOREIGN KEY (role_id)
+  REFERENCES roles(id)
   ON DELETE SET NULL
 );
