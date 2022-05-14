@@ -32,4 +32,9 @@ THEN I am prompted to select an employee to update and their new role and this i
     * Uses the [MySQL2 package](https://www.npmjs.com/package/mysql2) to connect to a MySQL database.
 
     * Uses the [console.table package](https://www.npmjs.com/package/console.table) to print MySQL rows to the console.
+    
+## Showcase Video
+https://user-images.githubusercontent.com/98142990/168448493-a5000ed2-4a39-4a8c-978f-42e2c374dc05.mp4
+
+
 
