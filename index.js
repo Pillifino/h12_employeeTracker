@@ -2,7 +2,6 @@
 const inquirer = require("inquirer");
 // get the client
 const mysql = require("mysql2");
-
 // Connect to database
 const db = mysql.createConnection(
   {
@@ -15,8 +14,7 @@ const db = mysql.createConnection(
   },
   console.log(`Connected to the company_db database.`)
 );
-
-//console.table
+// console.table
 const cTable = require('console.table');
 
 function startTracker() {
@@ -161,7 +159,6 @@ function employeeRole() {
             "Lawyer",
             "Customer Service")
           ) {
-            // Create db.query statements that use the data from inquirer to send dirctly to database in sql
             updateEmployeeRole(answers);
           } else {
             console.log("Error");
@@ -211,7 +208,6 @@ function addRoles() {
             "Customer Care",
             "Accounting")
           ) {
-            //Add db.query statement that adds the correct dpartment_id number
             sendToRoles(answers);
           } else {
             console.log("Error");
@@ -240,7 +236,6 @@ function addDepartments() {
       ])
       .then(function (answers) {
         if (answers.departmentName) {
-          // Create db.query statements that use the data from inquirer to send dirctly to database in sql
           sendToDepartments(answers);
         } else {
           console.log("Error");
@@ -254,28 +249,28 @@ startTracker();
 // db.queries for viewing the database tables
 function viewDepartments() {
   db.query("SELECT * FROM departments", function (err, results) {
-    console.log(results);
+    console.table(results);
     startTracker();
-  });
+  });  
 }
 
 function viewRoles() {
   db.query("SELECT * FROM roles", function (err, results) {
-    console.log(results);
+    console.table(results);
     startTracker();
   });
 }
 
 function viewEmployees() {
   db.query("SELECT * FROM employees", function (err, results) {
-    console.log(results);
+    console.table(results);
     startTracker();
   });
 }
 
 //db queries for adding to the database tables
 
-// ADD new departments (not Working)
+  // ADD new departments (not Working)
 function sendToDepartments(answers) {
   db.query(
     "INSERT INTO departments (department_name)VALUES (?)",
@@ -288,7 +283,7 @@ function sendToDepartments(answers) {
   );
 }
 
-// ADD New roles (not Working)
+  // ADD New roles (not Working)
 function sendToRoles(answers) {
   db.query(
     "INSERT INTO roles (title, salary, department_id)VALUES (?,?,?)",
@@ -300,7 +295,7 @@ function sendToRoles(answers) {
   );
 }
 
-// ADD new employee into employee  (Working)
+  // ADD new employee into employee  (Working)
 function sendToEmployees(answers) {
   db.query(
     "INSERT INTO employees (role_id, manager_id, first_name, last_name)VALUES (?,?,?,?)",
@@ -313,7 +308,7 @@ function sendToEmployees(answers) {
   
 }
 
-// UPDATE Employee roles (working)
+  // UPDATE Employee roles (working)
 function updateEmployeeRole(answers) {
   db.query(
     `UPDATE employees SET role_id=? WHERE id=?`,
