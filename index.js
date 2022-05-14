@@ -162,7 +162,7 @@ function employeeRole() {
             "Customer Service")
           ) {
             // Create db.query statements that use the data from inquirer to send dirctly to database in sql
-            updateEmployeeRole();
+            updateEmployeeRole(answers);
           } else {
             console.log("Error");
           }
@@ -239,7 +239,7 @@ function addDepartments() {
         },
       ])
       .then(function (answers) {
-        if ((answers.departmentName = answers)) {
+        if (answers.departmentName) {
           // Create db.query statements that use the data from inquirer to send dirctly to database in sql
           sendToDepartments(answers);
         } else {
@@ -275,23 +275,24 @@ function viewEmployees() {
 
 //db queries for adding to the database tables
 
-// Used to create new departments
+// ADD new departments (not Working)
 function sendToDepartments(answers) {
   db.query(
-    "INSERT INTO departments (department_name) VALUES ?",
+    "INSERT INTO departments (department_name)VALUES (?)",
     answers.departmentName,
     function (err, results) {
+      console.log(answers)
       console.log(err);
       startTracker();
     }
   );
 }
 
-// Used to Create New roles
+// ADD New roles (not Working)
 function sendToRoles(answers) {
   db.query(
-    "INSERT INTO roles (title, salary)VALUES (?,?)",
-    [answers.roleName, answers.salary],
+    "INSERT INTO roles (title, salary, department_id)VALUES (?,?,?)",
+    [answers.roleName, answers.salary, answers.departments],
     function (err, results) {
       console.log(err);
       startTracker();
@@ -299,7 +300,7 @@ function sendToRoles(answers) {
   );
 }
 
-//Used to add new employee into employee table
+// ADD new employee into employee  (Working)
 function sendToEmployees(answers) {
   db.query(
     "INSERT INTO employees (role_id, manager_id, first_name, last_name)VALUES (?,?,?,?)",
@@ -312,18 +313,12 @@ function sendToEmployees(answers) {
   
 }
 
+// UPDATE Employee roles (working)
 function updateEmployeeRole(answers) {
-  db.query("DELETE FROM employees WHERE 'role_id' = ? AND 'department_id = ?'", id, (err,result)=> {
-    if(err) {
-      console.log(err);
-    }
-    console.log(result);
-  });
-
   db.query(
-    "INSERT INTO employees role_id VALUES ?",
-    answers.role,
-    function(err, results) {
+    `UPDATE employees SET role_id=? WHERE id=?`,
+    [answers.role, answers.employeeName],
+    function (err, results) {
       console.log(err);
       startTracker();
     }
