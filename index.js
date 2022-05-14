@@ -196,7 +196,7 @@ function addRoles() {
           {
             type: "list",
             message: "Which department does the role belong to?",
-            name: "deparment",
+            name: "department",
             choices: departments,
           },
         ])
@@ -246,7 +246,7 @@ function addDepartments() {
 
 startTracker();
 
-// db.queries for viewing the database tables
+// db.queries for viewing the database tables (Working)
 function viewDepartments() {
   db.query("SELECT * FROM departments", function (err, results) {
     console.table(results);
@@ -270,7 +270,7 @@ function viewEmployees() {
 
 //db queries for adding to the database tables
 
-  // ADD new departments (not Working)
+  // ADD new departments (Working)
 function sendToDepartments(answers) {
   db.query(
     "INSERT INTO departments (department_name)VALUES (?)",
@@ -283,12 +283,13 @@ function sendToDepartments(answers) {
   );
 }
 
-  // ADD New roles (not Working)
+  // ADD New roles (not Working: needs to connect foreign key of department_id to primary key departments(id))
 function sendToRoles(answers) {
   db.query(
     "INSERT INTO roles (title, salary, department_id)VALUES (?,?,?)",
-    [answers.roleName, answers.salary, answers.departments],
+    [answers.roleName, answers.salary, answers.department],
     function (err, results) {
+      console.log(answers)
       console.log(err);
       startTracker();
     }

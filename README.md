@@ -1,5 +1,10 @@
 # h12_employeeTracker
 
+## Description
+Using node, create an employee tracker that allows us to 
+add, update, and view different employees, departments, and roles into our company 
+database. The program relies on npm packages inquirer, mysql2, and console.table
+
 ## Acceptance Criteria
 
 ```md
@@ -22,83 +27,10 @@ WHEN I choose to update an employee role
 THEN I am prompted to select an employee to update and their new role and this information is updated in the database 
 ```
 
-A role can have many employees, but an employee cannot have many roles
-
-Create table called Departments
-
-
-Questions For Inquirer
-
-What would you like to do? (list)
-    *View All Employees* (choices)
-        Table Shows The Following:
-            id
-            first_name
-            last_name
-            title
-            department
-            salary
-            manager
-    *Add Employee* (choices)
-        What is the employee's first name? (Input Text)
-        What is the employee's last name? (Input Text)
-        What is the employee's role? (list)
-            Sales Lead (choices)
-            Salesperson (choices)
-            Lead Engineer (choices)
-            Software Engineer (choices)
-            Account Manager (choices)
-            Accountant (choices)
-            Legal Team Lead (choices)
-            Lawyer (choices)
-            Customer Service (choices)
-        Who is the employee's manager? (list)
-            None (choices)
-            John Doe (choices)
-            Mike Chan (choices)
-            Ashley Rodriguez (choices)
-            Kevin Tupik (choices)
-            Kunal Singh (choices)
-            Malia Brown (choices)
-    *Update Employee Role* (choices)
-        Which employee's role do you want to update? (list)
-            All Employees (choices)
-        Which role do you want to assign the selected employee? (list)
-            Sales Lead (choices)
-            Salesperson (choices)
-            Lead Engineer (choices)
-            Software Engineer (choices)
-            Account Manager (choices)
-            Accountant (choices)
-            Legal Team Lead (choices)
-            Lawyer (choices)
-            Customer Service (choices)
-                Updated employee's role
-    *View All Roles* (choices)
-        id
-        title
-        department
-        salary
-    *Add Role* (choices)
-        What is the name of the role? (Input Text)
-        What is the salary of the role? (Input Text)
-        which department does the role belong to? (list)
-            Engineering (choices)
-            Finance (choices)
-            Legal (choices)
-            Sales (choices)
-            Service (choices)
-                Added (Input Text) To the database
-    *View All Departments* (choices)
-        id 
-        Name
-    *Add Departments* (choices)
-        What is the name of the department? (input Text)
-            Added (input) to the database
-    
 ## Useful Links
     * Uses the [Inquirer package](https://www.npmjs.com/package/inquirer).
 
     * Uses the [MySQL2 package](https://www.npmjs.com/package/mysql2) to connect to a MySQL database.
 
     * Uses the [console.table package](https://www.npmjs.com/package/console.table) to print MySQL rows to the console.
+
